@@ -246,6 +246,26 @@ button:disabled{
     word-break:break-word;
 }
 
+.message .sender{
+    color:#facc15;
+    font-weight:700;
+}
+
+.message .client-id{
+    color:#94a3b8;
+    font-size:.92rem;
+    margin-left:6px;
+}
+
+.message .separator{
+    color:#64748b;
+    margin:0 0.5rem;
+}
+
+.message .message-text{
+    color:#f8fafc;
+}
+
 .system .tag{
     color:#a855f7;
 }
@@ -325,6 +345,44 @@ footer{
         flex-direction:column;
         gap:15px;
         align-items:flex-start;
+    }
+
+}
+
+@media(max-width:768px){
+
+    .logs{
+        padding:12px;
+        height:380px;
+    }
+
+    .log{
+        display:flex;
+        flex-wrap:wrap;
+        gap:6px;
+        padding:10px 0;
+        border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .time{
+        min-width:auto;
+        font-size:.75rem;
+        color:#94a3b8;
+    }
+
+    .tag{
+        min-width:auto;
+        font-size:.75rem;
+    }
+
+    .message{
+        width:100%;
+        margin-top:4px;
+        word-break:break-word;
+        overflow-wrap:anywhere;
+        white-space:normal;
+        line-height:1.5;
+        font-size:.9rem;
     }
 
 }

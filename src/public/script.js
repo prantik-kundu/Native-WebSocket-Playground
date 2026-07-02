@@ -76,7 +76,11 @@ function createLog(type, message) {
     }
     const msg = document.createElement("span");
     msg.className = "message";
-    msg.textContent = message;
+    if (message.includes("<span")) {
+        msg.innerHTML = message;
+    } else {
+        msg.textContent = message;
+    }
     row.append(time, tag, msg);
     logs.appendChild(row);
     if (autoScroll) logs.scrollTop = logs.scrollHeight;
@@ -137,7 +141,7 @@ connectBtn.addEventListener("click", () => {
                 break;
 
             case EVENTS.MESSAGE:
-                createLog("received", `${data.username} (${data.clientId}) → ${data.message}`);
+                createLog("received", `<span class="sender">${data.username}</span> <span class="client-id">${data.clientId}</span> <span class="separator">•</span> <span class="message-text">${data.message}</span>`);
                 break;
 
             case EVENTS.DISCONNECTED:
