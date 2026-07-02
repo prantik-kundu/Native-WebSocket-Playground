@@ -1,0 +1,16 @@
+{
+  "name": "native-web-sockets-playground",
+  "version": "1.0.0",
+  "description": "A lightweight WebSocket chat application built with the native ws library.",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
+  },
+  "author": "Prantik Kundu",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "ws": "^8.21.0"
+  }
+}

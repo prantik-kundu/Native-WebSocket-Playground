@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebSocket Live Monitor</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  </head>
+  <body>
+    <main class="container">
+      <header class="hero">
+        <h1>Native WebSocket Playground</h1>
+        <p>Built using the Browser WebSocket API & Node.js ws library</p>
+      </header>
+
+      <section class="status-bar">
+        <div class="status-card">
+          <span class="label">Status</span>
+          <span id="connectionStatus" class="badge disconnected">Disconnected</span>
+        </div>
+
+        <div class="status-card">
+          <span class="label">Protocol</span>
+          <span id="protocol">—</span>
+        </div>
+
+        <div class="status-card">
+          <span class="label">Sent</span>
+          <span id="sentCount">0</span>
+        </div>
+
+        <div class="status-card">
+          <span class="label">Received</span>
+          <span id="receivedCount">0</span>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Connection</h2>
+
+        <div class="field">
+          <label for="serverUrl">Server URL</label>
+          <input id="serverUrl" type="text" placeholder="Auto-detects from this site" />
+        </div>
+
+        <div class="field">
+          <label for="username">Username</label>
+          <input id="username" type="text" placeholder="Choose a username" />
+        </div>
+
+        <button id="connectBtn">Connect</button>
+      </section>
+
+      <section class="panel">
+        <h2>Send Message</h2>
+
+        <div class="message-box">
+          <input id="messageInput" type="text" placeholder="Type your message..." autocomplete="off"/>
+          <button id="sendBtn" disabled>Send</button>
+        </div>
+      </section>
+
+      <section class="panel logs-panel">
+        <div class="logs-header">
+          <h2>Live Event Console</h2>
+
+          <div class="logs-actions">
+            <button id="autoScrollBtn">Auto Scroll ✓</button>
+            <button id="clearLogsBtn">Clear Logs</button>
+          </div>
+        </div>
+
+        <div id="logs" class="logs"></div>
+      </section>
+
+      <footer>
+        <span>Native Browser WebSocket API Demo</span>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
