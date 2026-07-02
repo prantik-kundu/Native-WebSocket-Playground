@@ -15,6 +15,7 @@ let socket = null;
 let autoScroll = true;
 let sent = 0;
 let received = 0;
+let clientId = null;
 
 const EVENTS = {
     JOIN: "join",
@@ -130,6 +131,7 @@ connectBtn.addEventListener("click", () => {
         switch (data.type) {
 
             case EVENTS.JOINED:
+                clientId = data.clientId;
                 updateStatus("Connected", "connected");
                 toggleControls(true);
                 messageInput.focus();
@@ -173,6 +175,7 @@ connectBtn.addEventListener("click", () => {
 function sendMessage() {
     if (!socket || socket.readyState !== WebSocket.OPEN) return;
     const message = messageInput.value.trim();
+    const name = username.value.trim();
     if (!message) return;
     socket.send(JSON.stringify({
         type: EVENTS.MESSAGE,
@@ -180,7 +183,7 @@ function sendMessage() {
     }));
     sent++;
     sentCount.textContent = sent;
-    createLog("sent", message);
+    createLog("sent", `<span class="sender">${name}</span> <span class="client-id">${clientId || "(unknown)"}</span> <span class="separator">•</span> <span class="message-text">${message}</span>`);
     messageInput.value = "";
     messageInput.focus();
 }
