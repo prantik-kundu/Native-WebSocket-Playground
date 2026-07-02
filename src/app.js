@@ -25,6 +25,20 @@ function send(socket, data) {
   }
 }
 
+function getRemoteAddress(request) {
+  const forwarded = request.headers["x-forwarded-for"] || request.headers["x-real-ip"];
+  if (forwarded) {
+    return forwarded.split(",")[0].trim();
+  }
+
+  const ip = request.socket.remoteAddress;
+  if (ip === "::1" || ip === "127.0.0.1" || ip === "::ffff:127.0.0.1") {
+    return "localhost";
+  }
+
+  return ip;
+}
+
 function broadcast(data, except = null) {
   wss.clients.forEach((client) => {
     if (client.readyState === WebSocket.OPEN && client !== except) {
@@ -34,7 +48,7 @@ function broadcast(data, except = null) {
 }
 
 wss.on("connection", (socket, request) => {
-  const ip = request.socket.remoteAddress === "::1" ? "localhost" : request.socket.remoteAddress;
+  const ip = getRemoteAddress(request);
   const port = request.socket.remotePort;
   socket.clientId = `[${ip}:${port}]`;
   socket.username = null;
